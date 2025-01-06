@@ -41,11 +41,13 @@ if st.checkbox("Mostrar Diagrama de Dispersión (Millaje vs Precio)"):
     st.plotly_chart(fig_3)
 
 # Construir el gráfico Distribución de precios por condición, tipo y modelo
-    fig_dist = px.sunburst(car_data,
-                           path=["condition", "type", "model"],
-                           values="price",
-                           color="condition",
-                           title="Distribución de precios por condición, tipo y modelo",
+fig_dist = px.sunburst(car_data,
+path=["condition", "type", "model"],
+values="price",
+color="condition",
+title="Distribución de precios por condición, tipo y modelo",
+width=800,  # Ancho del gráfico
+height=800,  # Altura del gráfico
 )
 
 # Mostrar el gráfico en Streamlit
