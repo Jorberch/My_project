@@ -32,9 +32,9 @@ if st.button("Mostrar Tabla"):
     st.dataframe(car_data)
 
 
-hist_button = st.button('Construir histograma') # crear un botón
+box = st.checkbox('Construir histograma') # crear un botón
 # Crear un botón para generar un histograma
-if hist_button: # al hacer clic en el botón
+if box: # al hacer clic en el botón
             # escribir un mensaje
             st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
             
