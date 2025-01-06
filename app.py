@@ -26,16 +26,8 @@ car_data['is_4wd'] = car_data['is_4wd'].fillna(0)
 st.header("Análisis Exploratorio de Vehículos") #Crear encabezado
 st.write("Vista previa del conjunto de datos:") #vista previa de datos
 
-# Verificar si la tabla está oculta o visible usando un estado de sesión
-if 'show_table' not in st.session_state:
-    st.session_state.show_table = False
-
-# Botón para mostrar u ocultar la tabla
-if st.button("Mostrar/Ocultar Tabla"):
-    st.session_state.show_table = not st.session_state.show_table
-
-# Mostrar u ocultar la tabla según el estado
-if st.session_state.show_table:
+# Botón para mostrar la tabla
+if st.button("Mostrar Tabla"):
     st.write("### Datos de los vehículos:")
     st.dataframe(car_data)
 
