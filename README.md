@@ -15,3 +15,6 @@ Esta es una aplicación web interactiva desarrollada con Streamlit para realizar
 - Generar un grafico para los tipos de vehículos por el fabricante.
 - Interfaz sencilla y dinámica con casillas de verificación para elegir los gráficos deseados.
 - Graficos dinamicos que permiten un analisis más a fondo.
+
+Url Render:
+https://proyecto-dgwf.onrender.com
