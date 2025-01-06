@@ -26,8 +26,16 @@ car_data['is_4wd'] = car_data['is_4wd'].fillna(0)
 st.header("Análisis Exploratorio de Vehículos") #Crear encabezado
 st.write("Vista previa del conjunto de datos:") #vista previa de datos
 
-# Botón para mostrar la tabla
-if st.button("Mostrar Tabla"):
+# Verificar si la tabla está oculta o visible usando un estado de sesión
+if 'show_table' not in st.session_state:
+    st.session_state.show_table = False
+
+# Botón para mostrar u ocultar la tabla
+if st.button("Mostrar/Ocultar Tabla"):
+    st.session_state.show_table = not st.session_state.show_table
+
+# Mostrar u ocultar la tabla según el estado
+if st.session_state.show_table:
     st.write("### Datos de los vehículos:")
     st.dataframe(car_data)
 
@@ -35,9 +43,9 @@ if st.button("Mostrar Tabla"):
 
 # Crear un botón para generar un histograma
 if st.checkbox('Mostrar venta de coches'):
-    fig = px.histogram(car_data, x='odómetro', nbins=50, title='Distribución de Precios de los Vehículos')
+    fig_histo = px.histogram(car_data, x='odómetro', nbins=50, title='Distribución de Kilometraje de los Vehículos')
     # Mostrar el gráfico en la aplicación
-    st.plotly_chart(fig)
+    st.plotly_chart(fig_histo)
 
 # Crear un botón para generar un gráfico de dispersión
 if st.checkbox("Mostrar Diagrama de Dispersión (Kilometraje vs Precio)"):
@@ -78,14 +86,13 @@ filtered_df = car_data[car_data['manufacturer'] == selected_manufacturer]
 # Contar los tipos de vehículos por fabricante
 vehicle_types = filtered_df.groupby(['manufacturer', 'type']).size().reset_index(name='count')
 
-# Crear histograma interactivo
-fig_histo = px.histogram(vehicle_types, 
-                   x='manufacturer', 
-                   y='count', 
-                   color='type', 
-                   title=f"Tipos de vehículos por el fabricante {selected_manufacturer}", 
-                   labels={'manufacturer': 'Fabricante', 'count': 'Cantidad', 'type': 'Tipo de vehículo'},
-                   barmode='stack')
+# Crear gráfico de barras agrupadas
+fig_bar = px.bar(vehicle_types, 
+             x='manufacturer', 
+             y='count', 
+             color='type', 
+             title="Tipos de vehículos por fabricante", 
+             labels={'manufacturer': 'Fabricante', 'count': 'Cantidad', 'type': 'Tipo de vehículo'}, 
+             barmode='group')
 
-# Mostrar el gráfico en Streamlit
-st.plotly_chart(fig_histo)
+fig_bar.show()
