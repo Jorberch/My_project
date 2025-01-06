@@ -36,7 +36,7 @@ box = st.checkbox('Construir histograma') # crear un botón
 # Crear un botón para generar un histograma
 if box: # al hacer clic en el botón
             # escribir un mensaje
-            st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
+            st.write('venta de coches por kilometraje')
             
             # crear un histograma
             fig = px.histogram(car_data, x="odometer")
