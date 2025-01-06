@@ -91,6 +91,6 @@ fig_bar = px.bar(vehicle_types,
              title="Tipos de vehículos por fabricante", 
              labels={'manufacturer': 'Fabricante', 'count': 'Cantidad', 'type': 'Tipo de vehículo'}, 
              barmode='group',
-             width=400,  # Ancho del gráfico
-             height=400)  # Altura del gráfico)
+             width=600,  # Ancho del gráfico
+             height=600)  # Altura del gráfico)
 st.plotly_chart(fig_bar)
