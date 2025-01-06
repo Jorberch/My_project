@@ -32,12 +32,17 @@ if st.button("Mostrar Tabla"):
     st.dataframe(car_data)
 
 
-
+hist_button = st.button('Construir histograma') # crear un botón
 # Crear un botón para generar un histograma
-if st.checkbox('Mostrar venta de coches'):
-    fig_histo = px.histogram(car_data, x='odómetro', nbins=50, title='Distribución de Kilometraje de los Vehículos')
-    # Mostrar el gráfico en la aplicación
-    st.plotly_chart(fig_histo)
+if hist_button: # al hacer clic en el botón
+            # escribir un mensaje
+            st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
+            
+            # crear un histograma
+            fig = px.histogram(car_data, x="odómetro")
+        
+            # mostrar un gráfico Plotly interactivo
+            st.plotly_chart(fig, use_container_width=True)
 
 # Crear un botón para generar un gráfico de dispersión
 if st.checkbox("Mostrar Diagrama de Dispersión (Kilometraje vs Precio)"):
@@ -85,6 +90,7 @@ fig_bar = px.bar(vehicle_types,
              color='type', 
              title="Tipos de vehículos por fabricante", 
              labels={'manufacturer': 'Fabricante', 'count': 'Cantidad', 'type': 'Tipo de vehículo'}, 
-             barmode='group')
-
-fig_bar.show()
+             barmode='group',
+             width=400,  # Ancho del gráfico
+             height=400)  # Altura del gráfico)
+st.plotly_chart(fig_bar)
