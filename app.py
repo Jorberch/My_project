@@ -4,10 +4,13 @@ import plotly.express as px
 
 car_data = pd.read_csv('vehicles_us.csv') #leer el dataframe
 
-# Asegurarse de que 'date_posted' sea de tipo datetime
+# Convertir 'date_posted' a tipo datetime
 car_data['date_posted'] = pd.to_datetime(car_data['date_posted'], errors='coerce')
 
-# Convertir 'model_year' a tipo entero, manejando NaNs con 'coerce'
+# Eliminar valores no numéricos antes de convertir a int
+car_data['model_year'] = pd.to_numeric(car_data['model_year'], errors='coerce')
+
+# Ahora convertir a entero
 car_data['model_year'] = car_data['model_year'].fillna(car_data['model_year'].mode()[0]).astype(int)
 
 # Rellenar valores faltantes en 'cylinders' con la mediana
