@@ -8,8 +8,7 @@ st.write("Vista previa del conjunto de datos:") #vista previa de datos
 st.write(car_data.head())
 
 # Crear un botón para generar un histograma
-if hist_button:
-    st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
+if st.button('Creación de un histograma para el conjunto de datos de anuncios de venta de coches'):
     fig = px.histogram(car_data, x='odometer', nbins=50, title='Distribución de Precios de los Vehículos')
     # Mostrar el gráfico en la aplicación
     st.plotly_chart(fig, use_container_width=True)
@@ -40,3 +39,15 @@ if st.checkbox("Mostrar Diagrama de Dispersión (Millaje vs Precio)"):
                      color='condition')
     # Mostrar el gráfico en la aplicación
     st.plotly_chart(fig)
+
+# Construir el gráfico Distribución de precios por condición, tipo y modelo
+    fig = px.sunburst(
+    car_data,
+    path=["condition", "type", "model"],
+    values="price",
+    color="condition",
+    title="Distribución de precios por condición, tipo y modelo",
+)
+
+# Mostrar el gráfico en Streamlit
+st.plotly_chart(fig)
